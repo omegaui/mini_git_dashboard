@@ -89,7 +89,8 @@ class AppState extends State<App> {
               Visibility(
                   visible: !online,
                   child: Align(
-                      alignment: Alignment.center, child: NoNetworkView())),Padding(
+                      alignment: Alignment.center, child: NoNetworkView())),
+              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Align(
                     alignment: Alignment.topRight,
@@ -104,7 +105,9 @@ class AppState extends State<App> {
                             AppStyle.lightMode
                                 ? Icons.nights_stay_rounded
                                 : Icons.sunny,
-                            color: AppStyle.lightMode ? Colors.purple : Colors.yellow,
+                            color: AppStyle.lightMode
+                                ? Colors.purple
+                                : Colors.yellow,
                           ),
                           splashRadius: 25,
                         ),
@@ -117,7 +120,8 @@ class AppState extends State<App> {
                             },
                             icon: Icon(
                               Icons.logout,
-                              color: AppStyle.lightMode ? Colors.blue : Colors.red,
+                              color:
+                                  AppStyle.lightMode ? Colors.blue : Colors.red,
                             ),
                             splashRadius: 25,
                           ),
