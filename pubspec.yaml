@@ -41,7 +41,6 @@ dependencies:
   github: ^9.7.0
   connectivity_plus: ^3.0.2
   lottie: ^2.1.0
-  http: ^0.13.5
   graphql_flutter: ^5.1.1
 
 dev_dependencies:
