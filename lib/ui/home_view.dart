@@ -7,7 +7,9 @@ import 'package:mini_git_dashboard/io/app_manager.dart';
 import 'package:mini_git_dashboard/io/app_style.dart';
 import 'package:mini_git_dashboard/io/user_data_provider.dart';
 import 'package:mini_git_dashboard/main.dart';
+import 'package:mini_git_dashboard/ui/contribution_graph.dart';
 import 'package:mini_git_dashboard/ui/neo_button.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -130,7 +132,12 @@ class HomeView extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         NeoButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            String profileUrl = 'https://github.com/${AppGitHubIntegrations.user.login}';
+                            if(await canLaunchUrlString(profileUrl)){
+                              launchUrlString(profileUrl);
+                            }
+                          },
                           radius: 25,
                           borderRadius: 40,
                           lightShadowColor:
@@ -173,7 +180,7 @@ class HomeView extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: Padding(
-              padding: const EdgeInsets.only(left: 20.0, bottom: 48),
+              padding: const EdgeInsets.only(left: 20.0, bottom: 20),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -242,9 +249,6 @@ class HomeView extends StatelessWidget {
                           ['nodes']) {
                         stargazers += node['stargazers']['totalCount'] as int;
                       }
-                      int commits = result.data?['viewer']
-                              ['contributionsCollection']
-                          ['totalCommitContributions'] as int;
                       return Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -293,6 +297,71 @@ class HomeView extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Query(
+              options: QueryOptions(
+                document: gql(contributionQuery),
+              ),
+              builder: (result, {fetchMore, refetch}) {
+                if (result.hasException) {
+                  return Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Icon(
+                      Icons.error,
+                      color: Colors.red.shade800,
+                      size: 25,
+                    ),
+                  );
+                }
+                if (result.isLoading) {
+                  return Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Icon(
+                      Icons.local_cafe_outlined,
+                      color: Colors.blue.shade800,
+                      size: 25,
+                    ),
+                  );
+                }
+                int totalContributions = result.data?['viewer']['contributionsCollection']['contributionCalendar']['totalContributions'];
+                dynamic contributions = result.data?['viewer']['contributionsCollection']['contributionCalendar']['weeks'];
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: SizedBox(
+                    width: 180,
+                    height: 130,
+                    child: Column(
+                      children: [
+                        Text(
+                          "$totalContributions in the last year",
+                          style: TextStyle(
+                            color: AppStyle.textColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Contribution Graph",
+                          style: TextStyle(
+                            color: AppStyle.textColor,
+                            fontFamily: "Ubuntu Mono",
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        ContributionGraph(
+                          contributions: contributions,
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
           ),
         ],

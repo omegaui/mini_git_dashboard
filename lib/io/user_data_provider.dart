@@ -14,13 +14,28 @@ const units = {
 const rankQuery = """
   query {
     viewer {
-      contributionsCollection{
-        totalCommitContributions
-      }
       repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}) {
         nodes {
           stargazers {
             totalCount
+          }
+        }
+      }
+    }
+  }
+""";
+
+const contributionQuery = """
+  query {
+    viewer {
+      contributionsCollection {
+        contributionCalendar {
+          totalContributions
+          weeks {
+            contributionDays {
+              contributionCount
+              date
+            }
           }
         }
       }
