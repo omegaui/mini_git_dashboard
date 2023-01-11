@@ -1,6 +1,6 @@
 <div align="center">
   <h3>🚀 Mini Git Dashboard 🚀</h3>
-  <video alt="hello" src="https://user-images.githubusercontent.com/73544069/211848568-e55dc779-b034-4225-b511-6494adf1410b.webm"></video>
+  <video src="https://user-images.githubusercontent.com/73544069/211848568-e55dc779-b034-4225-b511-6494adf1410b.webm"></video>
 </div>
 
 # Features

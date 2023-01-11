@@ -1,5 +1,5 @@
 name: mini_git_dashboard
-description: A new Flutter project.
+description: Tiny Git Dashboard
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
