@@ -14,6 +14,14 @@ class AppManager {
     return _preferences.getBool('logged-in') ?? false;
   }
 
+  static bool isLightMode(){
+    return _preferences.getBool('light-mode') ?? true;
+  }
+
+  static Future<void> setLightMode(bool value) async {
+    await _preferences.setBool('light-mode', value);
+  }
+
   static Widget getView(){
     return isUserLoggedIn() ? HomeView() : LoginView();
   }

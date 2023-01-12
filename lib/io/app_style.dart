@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:mini_git_dashboard/io/app_manager.dart';
 
 import '../main.dart';
 
@@ -19,8 +20,9 @@ class AppStyle {
 
   static bool lightMode = true;
 
-  static void switchTheme(){
+  static Future<void> switchTheme({reload=true}) async {
     lightMode = !lightMode;
+    await AppManager.setLightMode(lightMode);
     if(lightMode){
       backgroundColor = const Color(0xFFEEF3FA);
       neoBorderColor = Colors.amberAccent;
@@ -47,7 +49,9 @@ class AppStyle {
       neoLightShadowColor = const Color(0xFF494949).withOpacity(0.4);
       neoDarkShadowColor = const Color(0xFF000000).withOpacity(0.4);
     }
-    rebuildApp();
+    if(reload) {
+      rebuildApp();
+    }
   }
 
 }

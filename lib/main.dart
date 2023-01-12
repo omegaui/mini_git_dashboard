@@ -18,6 +18,10 @@ void rebuildApp() {
 void main() async {
   await AppManager.initAppData();
 
+  if(!AppManager.isLightMode()){
+    await AppStyle.switchTheme(reload: false);
+  }
+
   runApp(App(key: appKey));
 
   doWhenWindowReady(() {
@@ -97,8 +101,8 @@ class AppState extends State<App> {
                     child: Column(
                       children: [
                         IconButton(
-                          onPressed: () {
-                            AppStyle.switchTheme();
+                          onPressed: () async {
+                            await AppStyle.switchTheme();
                             rebuildApp();
                           },
                           icon: Icon(
