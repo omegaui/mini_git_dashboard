@@ -61,7 +61,9 @@ class AppState extends State<App> {
         }
       } else {
         if (online) {
-          online = false;
+          setState(() {
+            online = false;
+          });
         }
       }
     });
