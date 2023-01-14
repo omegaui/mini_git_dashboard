@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:mini_git_dashboard/io/app_manager.dart';
 import 'package:mini_git_dashboard/io/app_style.dart';
 import 'package:mini_git_dashboard/ui/dashboard.dart';
-import 'package:mini_git_dashboard/ui/neo_button.dart';
 import 'package:mini_git_dashboard/ui/no_network_view.dart';
 
 GlobalKey<AppState> appKey = GlobalKey();
@@ -27,6 +26,7 @@ void main() async {
   doWhenWindowReady(() {
     const initialSize = Size(400, 250);
     appWindow.minSize = initialSize;
+    appWindow.maxSize = initialSize;
     appWindow.size = initialSize;
     appWindow.alignment = Alignment.center;
     appWindow.show();
