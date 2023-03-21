@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mini_git_dashboard/io/app_style.dart';
 import 'package:mini_git_dashboard/ui/graph_block.dart';
 
 class ContributionGraph extends StatelessWidget {
@@ -17,9 +16,7 @@ class ContributionGraph extends StatelessWidget {
           .reversed
           .toList();
       for (var day in days) {
-        fetchList.add([
-          day['contributionCount'],
-          day['date']]);
+        fetchList.add([day['contributionCount'], day['date']]);
       }
     }
     int k = 0;
@@ -28,10 +25,8 @@ class ContributionGraph extends StatelessWidget {
       for (var j = 0; j < 6; j++) {
         int contributionCount = fetchList[k][0];
         String date = fetchList[k++][1];
-        widgets.add(GraphBlock(
-          contributionCount: contributionCount,
-          date: date
-        ));
+        widgets
+            .add(GraphBlock(contributionCount: contributionCount, date: date));
       }
       rows.add(Wrap(spacing: 4, children: widgets));
       rows.add(const SizedBox(

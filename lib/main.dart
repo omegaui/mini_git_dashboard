@@ -17,7 +17,7 @@ void rebuildApp() {
 void main() async {
   await AppManager.initAppData();
 
-  if(!AppManager.isLightMode()){
+  if (!AppManager.isLightMode()) {
     await AppStyle.switchTheme(reload: false);
   }
 

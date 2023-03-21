@@ -1,10 +1,10 @@
-
 import 'package:flutter/material.dart';
 
 import '../io/app_style.dart';
 
-class GraphBlock extends StatefulWidget{
-  const GraphBlock({super.key, required this.contributionCount, required this.date});
+class GraphBlock extends StatefulWidget {
+  const GraphBlock(
+      {super.key, required this.contributionCount, required this.date});
 
   final int contributionCount;
   final String date;
@@ -14,7 +14,6 @@ class GraphBlock extends StatefulWidget{
 }
 
 class _GraphBlockState extends State<GraphBlock> {
-
   bool hover = false;
 
   Color inferColor(int contributionCount) {
@@ -34,19 +33,17 @@ class _GraphBlockState extends State<GraphBlock> {
     return Tooltip(
       message: "${widget.contributionCount} on ${widget.date}",
       textStyle: TextStyle(
-          fontFamily: "Ubuntu Mono",
-          fontSize: 12,
-          color: AppStyle.textColor
-      ),
+          fontFamily: "Ubuntu Mono", fontSize: 12, color: AppStyle.textColor),
       decoration: BoxDecoration(
         color: AppStyle.neoBackgroundColor,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-              color: AppStyle.lightMode ? Colors.red.withOpacity(0.4) : Colors.blue.withOpacity(0.4),
+              color: AppStyle.lightMode
+                  ? Colors.red.withOpacity(0.4)
+                  : Colors.blue.withOpacity(0.4),
               blurRadius: 4,
-              spreadRadius: 4
-          ),
+              spreadRadius: 4),
         ],
       ),
       child: MouseRegion(
@@ -60,11 +57,9 @@ class _GraphBlockState extends State<GraphBlock> {
               color: inferColor(widget.contributionCount),
               borderRadius: BorderRadius.circular(5),
               border:
-              Border.all(color: Colors.grey.withOpacity(0.2), width: 1)),
+                  Border.all(color: Colors.grey.withOpacity(0.2), width: 1)),
         ),
       ),
     );
   }
 }
-
-

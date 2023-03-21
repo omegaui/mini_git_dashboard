@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:mini_git_dashboard/io/app_github_integrations.dart';
@@ -62,13 +61,10 @@ class UserDataProvider {
     return convertToMetrics(AppGitHubIntegrations.user.followingCount ?? 0);
   }
 
-
-
   static ImageProvider getTrophy(int stargazers) {
-    if(stargazers >= 1000){
+    if (stargazers >= 1000) {
       return AppImages.trophySuper;
-    }
-    else if(stargazers >= 100){
+    } else if (stargazers >= 100) {
       return AppImages.trophyA;
     }
     return AppImages.trophyOther;
@@ -89,14 +85,13 @@ class UserDataProvider {
     return countString;
   }
 
-  static Widget getElemental(stargazers){
-    if(stargazers >= 1000){
+  static Widget getElemental(stargazers) {
+    if (stargazers >= 1000) {
       return Icon(
         Icons.diamond_outlined,
         color: Colors.green,
       );
-    }
-    else if(stargazers >= 100){
+    } else if (stargazers >= 100) {
       return Icon(
         Icons.local_fire_department_outlined,
         color: Colors.redAccent,
@@ -107,5 +102,4 @@ class UserDataProvider {
       color: Colors.blueAccent,
     );
   }
-
 }

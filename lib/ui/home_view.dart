@@ -133,17 +133,20 @@ class HomeView extends StatelessWidget {
                       children: [
                         NeoButton(
                           onPressed: () async {
-                            String profileUrl = 'https://github.com/${AppGitHubIntegrations.user.login}';
-                            if(await canLaunchUrlString(profileUrl)){
+                            String profileUrl =
+                                'https://github.com/${AppGitHubIntegrations.user.login}';
+                            if (await canLaunchUrlString(profileUrl)) {
                               launchUrlString(profileUrl);
                             }
                           },
                           radius: 25,
                           borderRadius: 40,
-                          lightShadowColor:
-                              AppStyle.lightMode ? const Color(0xFF1530BF).withOpacity(0.25) : Colors.grey.withOpacity(0.5),
-                          darkShadowColor:
-                          AppStyle.lightMode ? const Color(0xFF161EE4).withOpacity(0.25) : Colors.grey.withOpacity(0.3),
+                          lightShadowColor: AppStyle.lightMode
+                              ? const Color(0xFF1530BF).withOpacity(0.25)
+                              : Colors.grey.withOpacity(0.5),
+                          darkShadowColor: AppStyle.lightMode
+                              ? const Color(0xFF161EE4).withOpacity(0.25)
+                              : Colors.grey.withOpacity(0.3),
                           shadowBlurRadius: 16,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(40),
@@ -326,8 +329,12 @@ class HomeView extends StatelessWidget {
                     ),
                   );
                 }
-                int totalContributions = result.data?['viewer']['contributionsCollection']['contributionCalendar']['totalContributions'];
-                dynamic contributions = result.data?['viewer']['contributionsCollection']['contributionCalendar']['weeks'];
+                int totalContributions = result.data?['viewer']
+                        ['contributionsCollection']['contributionCalendar']
+                    ['totalContributions'];
+                dynamic contributions = result.data?['viewer']
+                        ['contributionsCollection']['contributionCalendar']
+                    ['weeks'];
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 16.0),
                   child: SizedBox(

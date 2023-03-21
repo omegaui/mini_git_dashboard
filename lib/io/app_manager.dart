@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:mini_git_dashboard/ui/login_view.dart';
 import 'package:mini_git_dashboard/ui/home_view.dart';
@@ -10,11 +9,11 @@ class AppManager {
     _preferences = await SharedPreferences.getInstance();
   }
 
-  static bool isUserLoggedIn(){
+  static bool isUserLoggedIn() {
     return _preferences.getBool('logged-in') ?? false;
   }
 
-  static bool isLightMode(){
+  static bool isLightMode() {
     return _preferences.getBool('light-mode') ?? true;
   }
 
@@ -22,7 +21,7 @@ class AppManager {
     await _preferences.setBool('light-mode', value);
   }
 
-  static Widget getView(){
+  static Widget getView() {
     return isUserLoggedIn() ? HomeView() : LoginView();
   }
 
@@ -38,6 +37,3 @@ class AppManager {
     return _preferences.getString('token') as String;
   }
 }
-
-
-
